@@ -10,6 +10,10 @@ The stack is Python and JavaScript only. The frontend is React with Vite, react-
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a1c2cc9d-c8a4-47e4-bc1b-1a65f183efc1" />
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f62d30f9-c46a-4880-acdc-61a646c91a80" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/39af4bdf-3a24-4855-b52f-c3e8c8655442" />
+
 
 ## Three decisions I made
 
