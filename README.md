@@ -2,7 +2,14 @@
 
 Hirely is a small hiring tool I built for a single recruiter. You log in, add candidates, move them through the hiring stages (Applied, Screening, Interview, Offer, Hired or Rejected), search and filter them, leave notes, and check a dashboard with the numbers. It works on a phone as well as a laptop.
 
-Live demo: _add the link here once it is deployed_
+Live demo: https://YOUR-APP-NAME.onrender.com
+
+Demo login (a demo account with sample data only, so the password is shared on purpose):
+
+- Email: `demo@hirely.test`
+- Password: `Bhavani1@`
+
+The free hosting may be asleep, so the first load can take up to a minute.
 
 The stack is Python and JavaScript only. The frontend is React with Vite, react-router-dom and @dnd-kit for the drag-and-drop board. The backend is FastAPI with SQLAlchemy, SQLite, Alembic for migrations, argon2 for passwords and pytest for tests. I didn't use TypeScript, a UI library, Tailwind or Docker. The funnel chart on the dashboard is plain CSS.
 
