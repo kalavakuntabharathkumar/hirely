@@ -29,3 +29,5 @@ Thumbs.db
 # Test and coverage output
 .coverage
 htmlcov/
+playwright-report/
+test-results/
