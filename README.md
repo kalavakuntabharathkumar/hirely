@@ -95,13 +95,40 @@ folder exists. Behind HTTPS set `HIRELY_ENV=production` in `.env` so cookies get
 
 ### Tests
 
+**Backend (pytest, 57 tests, 90% coverage):**
+
 ```bash
 cd backend
-pytest
+pytest -v
+pip install pytest-cov
+pytest --cov=app --cov-report=term-missing
 ```
 
 The tests build a temporary SQLite file by running the real Alembic migration (there is no
-`create_all()` anywhere), so they also check that the migration works.
+`create_all()` anywhere), so they also check that the migration works. They cover stage rules,
+login and lockout, CSRF, sessions (including expiry), candidate create/update/archive, search and
+wildcard escaping, stage filter, pagination, notes, input validation, and dashboard numbers.
+
+**Browser end-to-end (Playwright, 11 tests):** start the backend (port 8000) and the frontend
+(port 5173), then in a third terminal:
+
+```
+cd frontend
+npm install
+npx playwright install chromium
+$env:E2E_PASSWORD="your DEMO_PASSWORD"     # PowerShell; macOS/Linux: export E2E_PASSWORD=...
+npx playwright test
+npx playwright show-report
+```
+
+Set `E2E_EMAIL` too if your demo email is not `demo@hirely.test`. The tests cover login, redirect
+when signed out, sign out, form validation, the full candidate lifecycle (add, move stage, edit,
+note, archive), duplicate email, search with stage filter, dashboard counts, the board columns,
+and no sideways scrolling on a phone-sized screen. They create `QA ...` candidates through the
+API and archive them afterwards.
+
+Not covered: drag and drop on the board (the stage rules behind it are covered by the backend
+tests), load testing, and browsers other than Chromium.
 
 ## Screenshot
 
@@ -162,7 +189,8 @@ _Placeholder: no screenshot has been captured yet. Run the app and add one here 
 backend/app/      main, config, database, models, schemas, security, deps, stages, seed
 backend/app/routes/   auth, candidates, notes, dashboard
 backend/alembic/  env.py and versions/0001_initial.py (the only way tables are created)
-backend/tests/    test_stages, test_candidates, test_auth
+backend/tests/    test_stages, test_candidates, test_auth, test_edge_cases
+frontend/e2e/     hirely.spec.js (Playwright), with playwright.config.js in frontend/
 frontend/src/     App, api, useApi, useAuth, styles.css
 frontend/src/components/   Button, Badge, Card, Field, DataTable, Modal, States,
                            Layout, CandidateForm, StageBar, FunnelChart, NotesPanel, KanbanBoard
@@ -193,6 +221,5 @@ frontend/src/screens/      Login, Dashboard, Candidates, CandidateDetail
 
 ## Verification status
 
-This build was produced in an environment without network access, so `pip install`, `npm install`,
-`pytest`, `npm run build` and a live server were **not run** there. Run `pytest` and
-`npm run build` yourself first. Touch dragging and the 360 px layout still need a real phone.
+Verified on Windows: `pytest` (57 passed, 90% coverage) and `npx playwright test` (11 passed)
+against a running backend and frontend. Touch dragging on a real phone has not been tested by hand.
