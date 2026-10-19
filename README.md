@@ -2,7 +2,7 @@
 
 Hirely is a small hiring tool I built for a single recruiter. You log in, add candidates, move them through the hiring stages (Applied, Screening, Interview, Offer, Hired or Rejected), search and filter them, leave notes, and check a dashboard with the numbers. It works on a phone as well as a laptop.
 
-Live demo: https://YOUR-APP-NAME.onrender.com
+Live demo: https://hirely-k8j5.onrender.com/
 
 Demo login (a demo account with sample data only, so the password is shared on purpose):
 
